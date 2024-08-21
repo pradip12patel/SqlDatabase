@@ -1,5 +1,6 @@
 package com.example.SqlServer.seriveImpl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,6 +86,17 @@ public class NewemployeeSrevieImpl implements NewemployeeServie{
 		
 	}
 
+	@Override
+	public List<NewEmployee> savesEmployees(NewEmployee[] newemployees) {
+		
+		List<NewEmployee> employeeList = Arrays.asList(newemployees);
+		
+		return newemployeereposotory.saveAll(employeeList);
+	}
+
+	
+	                          
+	
 	
 	
 

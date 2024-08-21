@@ -8,6 +8,8 @@ public interface NewemployeeServie {
 
 	NewEmployee saveemployee(NewEmployee newemployee);
 	
+    List<NewEmployee> savesEmployees(NewEmployee[] newemployees);
+	
 	List<NewEmployee>  getallNewEmployees();
 	
 	NewEmployee getemployeebyID(long id);
@@ -15,5 +17,9 @@ public interface NewemployeeServie {
 	NewEmployee updatenewemployee(NewEmployee employee, long id);
 	
 	void deleteemployee(long id);
+
+ 
+
+	
 	
 }

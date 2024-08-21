@@ -42,12 +42,36 @@ public class Newemployontroller {
        System.out.println("mother: " + newemployee.getEmployee_mothername());
        System.out.println("father: " + newemployee.getEmployee_fathername());
        System.out.println("salary: " + newemployee.getSalary());
+       
+       System.out.println("-----------------------------------------------------");
 		
 		return new ResponseEntity<NewEmployee>(newemployservie.saveemployee(newemployee), HttpStatus.CREATED);
 		
-		
 		  
 	}
+	
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping("/group")
+	public ResponseEntity<NewEmployee> saveemployees(@RequestBody  NewEmployee[] newemployees){
+		
+	  System.out.println("Array_Send_Value: " + (newemployees).length );
+	  
+	   // Print each employee details
+      for (NewEmployee emp : newemployees) {
+          System.out.println("Name: " + emp.getEmployee_name());
+          System.out.println("Email: " + emp.getEmail());
+          System.out.println("Mother: " + emp.getEmployee_mothername());
+          System.out.println("Father: " + emp.getEmployee_fathername());
+          System.out.println("Salary: " + emp.getSalary());
+          System.out.println("-----------------------------------------------------");
+      }
+	 
+    
+		return new ResponseEntity(newemployservie.savesEmployees(newemployees), HttpStatus.CREATED);
+		
+		  
+	}         
 	
 	
 	//build get all newemployee rest api
@@ -55,9 +79,10 @@ public class Newemployontroller {
 	@GetMapping("/getnewemployee")
 	public List<NewEmployee>  getallNewemployee()  {
 		
+		 // Print message when fetching employees
+        System.out.println("Fetching all employees.....");
+		
 		return newemployservie.getallNewEmployees();
-		
-		
 		
 	}
 	
@@ -66,6 +91,9 @@ public class Newemployontroller {
 	
 	@GetMapping("/getnewemployee/{id}")
 	public ResponseEntity<NewEmployee> getbyid(@PathVariable("id") long employeeid)  {
+		
+		 // Print the ID of the employee being fetched
+        System.out.println("Fetching employee with ID: " + employeeid);
 		
 		return new ResponseEntity<NewEmployee>(newemployservie.getemployeebyID(employeeid), HttpStatus.OK);
 	}
@@ -79,6 +107,14 @@ public class Newemployontroller {
 			                                          @RequestBody NewEmployee updateemployee)  {
 		
 		
+	// Print ID and new details of the employee being updated
+        System.out.println("Updating employee with ID: " + id);
+        System.out.println("Updated Name: " + updateemployee.getEmployee_name());
+        System.out.println("Updated Email: " + updateemployee.getEmail());
+        System.out.println("Updated Mother: " + updateemployee.getEmployee_mothername());
+        System.out.println("Updated Father: " + updateemployee.getEmployee_fathername());
+        System.out.println("Updated Salary: " + updateemployee.getSalary());
+		
 		return new ResponseEntity<NewEmployee>(newemployservie.updatenewemployee(updateemployee, id), HttpStatus.OK);
 		
 		
@@ -91,9 +127,12 @@ public class Newemployontroller {
 	@DeleteMapping("/deletenewemployies/{id}")
 	public ResponseEntity<String> deleteemployee(@PathVariable("id") long id)  {
 		
-		newemployservie.deleteemployee(id);
-		
-		return new ResponseEntity<String>("Employee Deleted Suessfully", HttpStatus.OK);
+		// Print ID of the employee being deleted
+        System.out.println("Deleting employee with ID: " + id);
+
+        newemployservie.deleteemployee(id);
+
+        return new ResponseEntity<String>("Employee Deleted Successfully", HttpStatus.OK);
 		
 	}
 	
