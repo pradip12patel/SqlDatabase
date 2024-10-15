@@ -4,41 +4,50 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.SqlServer.eeption.ResoureNotFoundEeption;
-import com.example.SqlServer.model.NewEmployee;
-import com.example.SqlServer.reposotry.Newemployeereposotory;
+import com.example.SqlServer.eeption.ResourceNotFoundException;
+import com.example.SqlServer.model.User;
+import com.example.SqlServer.reposotry.Userreposotory;
 import com.example.SqlServer.servie.NewemployeeServie;
 
 
 @Service
 public class NewemployeeSrevieImpl implements NewemployeeServie{
 	
-	private Newemployeereposotory newemployeereposotory;
+	private Userreposotory userreposotory;
+	
+	
+      public NewemployeeSrevieImpl(Userreposotory userreposotory) {
+		
+		super();
+		this.userreposotory = userreposotory;
+	}
+
+	
+	
+	
+	
+	
+	
 
 	@Override
-	public NewEmployee saveemployee(NewEmployee newemployee) {
+	public User saveuser(User user) {
 		
-		return newemployeereposotory.save(newemployee);
+		return userreposotory.save(user);
 	}
 	
-	public NewemployeeSrevieImpl(Newemployeereposotory newemployeereposotory) {
-		super();
-		this.newemployeereposotory = newemployeereposotory;
+	
+	@Override
+	public List<User> getalluser() {
+		
+		return userreposotory.findAll();
 	}
 
 	@Override
-	public List<NewEmployee> getallNewEmployees() {
+	public User getuserbyID(long id) {
 		
-		return newemployeereposotory.findAll();
-	}
-
-	@Override
-	public NewEmployee getemployeebyID(long id) {
-		
-	Optional<NewEmployee> employee = newemployeereposotory.findById(id);
+	Optional<User> user = userreposotory.findById(id);
 	
 /*	if(employee.isPresent()) {
 	
@@ -50,48 +59,52 @@ public class NewemployeeSrevieImpl implements NewemployeeServie{
 	}   */
 	
 	
-	return newemployeereposotory.findById(id).orElseThrow(() -> 
-	                        new ResoureNotFoundEeption("newemployee", "id", id));
+	return userreposotory.findById(id).orElseThrow(() -> 
+	                        new ResourceNotFoundException("user", "id", id));
 	
 	}
 
 	@Override
-	public NewEmployee updatenewemployee(NewEmployee employee, long id) {
+	public User updateuser(User user, long id) {
 		
 		//we need to hek that employee eist or not in table
-		NewEmployee eistemployee  = newemployeereposotory.findById(id).orElseThrow(() -> 
-		                                   new ResoureNotFoundEeption("NewEmployee", "id", id));
+		User eistuser = userreposotory.findById(id).orElseThrow(() -> 
+		                                   new ResourceNotFoundException("user", "id", id));
 		
-		eistemployee.setEmployee_name(employee.getEmployee_name());
-		eistemployee.setEmployee_fathername(employee.getEmployee_fathername());
-		eistemployee.setEmployee_mothername(employee.getEmployee_mothername());
-		eistemployee.setEmail(employee.getEmail());
-		eistemployee.setSalary(employee.getSalary());
+//		eistemployee.setEmployee_name(employee.getEmployee_name());
+//		eistemployee.setEmployee_fathername(employee.getEmployee_fathername());
+//		eistemployee.setEmployee_mothername(employee.getEmployee_mothername());
+//		eistemployee.setEmail(employee.getEmail());
+//		eistemployee.setSalary(employee.getSalary());
 		
 		//save eisting employee in DB
 		
-		newemployeereposotory.save(eistemployee);
+		userreposotory.save(eistuser);
 		
-		return eistemployee;
+		return eistuser;
 	}
 
-	@Override
-	public void deleteemployee(long id) {
-		
-		//hek employee eist or not
-		
-		newemployeereposotory.findById(id).orElseThrow(() -> new ResoureNotFoundEeption("newEmployee", "id", id));
-		
-		newemployeereposotory.deleteById(id);
-		
-	}
+	
+
+	 
 
 	@Override
-	public List<NewEmployee> savesEmployees(NewEmployee[] newemployees) {
+	public User postuser(User newemployees) {
 		
-		List<NewEmployee> employeeList = Arrays.asList(newemployees);
 		
-		return newemployeereposotory.saveAll(employeeList);
+		return null;
+	}
+
+
+
+
+	@Override
+	public void deleteuser(long id) {
+		
+		userreposotory.findById(id).orElseThrow(() -> new ResourceNotFoundException("newEmployee", "id", id));
+		
+	    userreposotory.deleteById(id);
+		
 	}
 
 	

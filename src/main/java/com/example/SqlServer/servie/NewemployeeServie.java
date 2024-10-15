@@ -2,21 +2,25 @@ package com.example.SqlServer.servie;
 
 import java.util.List;
 
-import com.example.SqlServer.model.NewEmployee;
+import com.example.SqlServer.model.User;
 
 public interface NewemployeeServie {
 
-	NewEmployee saveemployee(NewEmployee newemployee);
+	User saveuser(User newemployee);
 	
-    List<NewEmployee> savesEmployees(NewEmployee[] newemployees);
+    User postuser(User newemployees);
 	
-	List<NewEmployee>  getallNewEmployees();
+	List<User>  getalluser();
 	
-	NewEmployee getemployeebyID(long id);
+	User getuserbyID(long id);
 	
-	NewEmployee updatenewemployee(NewEmployee employee, long id);
+	User updateuser(User employee, long id);
 	
-	void deleteemployee(long id);
+	void deleteuser(long id);
+
+	
+
+	
 
  
 
