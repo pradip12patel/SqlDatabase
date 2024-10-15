@@ -25,10 +25,10 @@ public class QRCodeController {
  @Autowired
 private QRCodeGeneratorService qrCodeGeneratorService;
 
-@GetMapping(value = "/qrcode/{content}", produces = MediaType.IMAGE_PNG_VALUE)
-public byte[] generateQrCode(@PathVariable String content) throws IOException {
-    int width = 200; // Adjust the desired width of the QR code
-    int height = 200; // Adjust the desired height of the QR code
-    return qrCodeGeneratorService.generateQrCodeImage(content, width, height);
-}
+//@GetMapping(value = "/qrcode/{content}", produces = MediaType.IMAGE_PNG_VALUE)
+//public byte[] generateQrCode(@PathVariable String content) throws IOException {
+//    int width = 200; // Adjust the desired width of the QR code
+//    int height = 200; // Adjust the desired height of the QR code
+//    return qrCodeGeneratorService.generateQrCodeImage(content, width, height);
+//}
 }
