@@ -10,8 +10,7 @@ public interface Userreposotory extends JpaRepository<User, Long>{
 
   	
 	boolean existsByEmail(String email);
-	
-	    
+
 	
 	
 	

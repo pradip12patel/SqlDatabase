@@ -98,4 +98,9 @@ public class User {
         this.phone = phone;
     }
 
+//	public boolean isPresent() {
+//		
+//		return false;
+//	}
+
 }

@@ -34,7 +34,7 @@ public class FamilyMemberController {
     // POST: Create a new family member
     @CrossOrigin(origins = "http://localhost:8083") 
     @PostMapping("/member")
-    public List<FamilyMember>  createFamilyMember(@RequestBody FamilyMember familyMember) {
+    public List<FamilyMember> createFamilyMember(@RequestBody FamilyMember familyMember) {
     	
         return familyMemberService.createFamilyMember(familyMember);
     }

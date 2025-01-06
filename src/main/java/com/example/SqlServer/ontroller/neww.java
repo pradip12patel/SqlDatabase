@@ -56,7 +56,7 @@ public class neww {
 	}
 
 	
-	@CrossOrigin(origins = "http://localhost:8083")
+	@CrossOrigin(origins = "http://localhost:8083") 
 		@PostMapping("/create")
 		public ResponseEntity<Product> saveproduct(@RequestBody  Product pro) throws IOException{
 			
@@ -120,7 +120,7 @@ public class neww {
 
 	        if (product.getId() > 0 && productservice.existsById(product.getId())) {
 	           
-	            Product existingProduct = productservice.findById(product.getId()).orElseThrow(() -> new ResourceNotFoundException("produt", "id", product));
+	            Product existingProduct = productservice.findById(product.getId());  //.orElseThrow(() -> new ResourceNotFoundException("produt", "id", product));
 	            product.setInStock(existingProduct.getInStock()); // Preserve the inStock status
 	            savedProduct = productservice.save(product);
 	        } else {

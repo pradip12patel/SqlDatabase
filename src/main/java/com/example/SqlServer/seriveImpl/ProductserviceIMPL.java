@@ -63,10 +63,10 @@ public class ProductserviceIMPL implements ProductService {
 	@Override
 	public Product getproductbyID(long id) {
 		
-		Optional<Product> pro = productrepo.findById(id);
+		Optional<Product> pro = Optional.of(productrepo.findById(id));
 		
-	    return productrepo.findById(id)
-	        .orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
+	    return productrepo.findById(id);
+	      //  .orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
 	}
 
 
@@ -74,7 +74,7 @@ public class ProductserviceIMPL implements ProductService {
 	public Product updateproduct(Product pro, long id) {
 
 		//we need to hek that employee eist or not in table
-				Product existpro=productrepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("product", "id", id));
+				Product existpro=productrepo.findById(id);    //.orElseThrow(() -> new ResourceNotFoundException("product", "id", id));
 				
 				existpro.setInStock((pro.getInStock()));
 				existpro.setName((pro.getName()));
@@ -122,7 +122,7 @@ public class ProductserviceIMPL implements ProductService {
 	        return productrepo.existsById(id);
 	    }
 
-	    public Optional<Product> findById(long id) {
+	    public Product findById(long id) {
 	        return productrepo.findById(id);
 	    }
 

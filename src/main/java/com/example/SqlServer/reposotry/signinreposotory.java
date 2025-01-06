@@ -11,11 +11,14 @@ import com.example.SqlServer.model.User;
 @Repository
 public interface signinreposotory extends JpaRepository<User, Long> {
 
-	
-
-//	
-	 Optional<User> findByEmail(String email);
-//	 
+	 
+	User findByEmail(String email);
+ 
 	 boolean existsByEmail(String email);
 
+	 
+	 
+	 Optional<User> findByemail(String email);
+	 
+	 boolean existsByemail(String email);
 }

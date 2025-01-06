@@ -17,18 +17,14 @@ public class AuthService {
 
 	 
 
-	    public User authenticateUser(String email, String password) throws Exception {
-	    	
-	        Optional<User> optionalUser = userRepository.findByEmail(email);
-
-	        if (!optionalUser.isPresent()) {
-	        	
-	            throw new Exception("Invalid email or password");
+	 public User authenticate(String email, String password) {
+	        // Find the user by email and check if the password matches
+	        User user = userRepository.findByEmail(email);
+	        if (user != null && user.getPassword().equals(password)) {
+	            return user;
 	        }
-
-	        return optionalUser.get();
-	    }                                       
-	    
+	        return null; // Return null if authentication fails
+	    }
 	    
 	    
 	    

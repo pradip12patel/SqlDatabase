@@ -22,7 +22,7 @@ public interface ProductService {
 		
 		 boolean existsById(long id);
 	   
-	    Optional<Product> findById(long id);
+	    Product findById(long id);
 
 	    Product save(Product product);
 

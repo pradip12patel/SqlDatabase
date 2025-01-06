@@ -12,8 +12,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Produts")
-public class Product {
+@Table(name = "OrderProduts")
+public class Orderdhistory {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -131,11 +131,11 @@ public class Product {
 	    
 
 	    // Default Constructor
-	    public Product() {
+	    public Orderdhistory() {
 	    }
 
 	    // Parameterized Constructor
-	    public Product(String paymentId, String orderId, Integer productId) {
+	    public Orderdhistory(String paymentId, String orderId, Integer productId) {
 	        this.paymentId = paymentId;
 	        this.orderId = orderId;
 	        this.id = productId;
@@ -174,11 +174,6 @@ public class Product {
 	                ", productId=" + id +
 	                '}';
 	    }
-
-		public boolean isEmpty() {
-			// TODO Auto-generated method stub
-			return false;
-		}
 
 		
 	    

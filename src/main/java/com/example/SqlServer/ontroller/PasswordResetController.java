@@ -1,6 +1,7 @@
 package com.example.SqlServer.ontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class PasswordResetController {
             emailService.sendResetPasswordEmail(email);
             return ResponseEntity.ok().body(new ApiResponse(true, "A reset password email has been sent to your email address."));
         } else {
-            return ResponseEntity.ok().body(new ApiResponse(false, "Email not found. Please check and try again."));
+            return ResponseEntity.status(HttpStatusCode.valueOf(404)).body(new ApiResponse(false, "Email not found. Please check and try again."));
         }
     }
     
@@ -54,10 +55,29 @@ public class PasswordResetController {
         public void setMessage(String message) {
             this.message = message;
         }
+        
     }
 
     
     
+ // ApiResponse.java
+    public class ApiResponse1 {
+       
+        private String message;
+
+        public ApiResponse1(String message) {
+            this.message = message;
+        }
+
+        
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
     
+    }
 }
 
