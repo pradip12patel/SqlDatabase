@@ -55,6 +55,14 @@ public class neww {
 	    return productservice.searchProducts(query);
 	}
 
+
+	 // Endpoint to get suggestions for autocomplete
+	 @CrossOrigin(origins = "http://localhost:8083")
+	 @GetMapping("/api/products/suggest")
+	 public List<Product> suggest(@RequestParam String query) {
+		 return productservice.getSuggestions(query);
+	 }
+
 	
 	@CrossOrigin(origins = "http://localhost:8083") 
 		@PostMapping("/create")

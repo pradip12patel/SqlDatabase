@@ -28,7 +28,7 @@ public interface ProductService {
 
 		List<Product> searchProducts(String query);
 	   
-	
+	    List<Product> getSuggestions(String query);
 	
 	
 	

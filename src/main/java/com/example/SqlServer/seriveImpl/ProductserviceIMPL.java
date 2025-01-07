@@ -3,6 +3,7 @@ package com.example.SqlServer.seriveImpl;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -131,8 +132,12 @@ public class ProductserviceIMPL implements ProductService {
 	    }
 
        
-	    
-	    
+
+   // Method to get product suggestions based on query
+   public List<Product> getSuggestions(String query) {
+	return productrepo.findByNameContainingIgnoreCase(query);
+	
+}
 
    
          

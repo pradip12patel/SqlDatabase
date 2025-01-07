@@ -18,6 +18,7 @@ public class FamilyMember {
     @Column(name = "id")
     private Long id;
     
+    
     @Column(name = "firstname")
     private String firstName;
     
